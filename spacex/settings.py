@@ -25,7 +25,9 @@ SECRET_KEY = '7gpb%z&hh(nudk4@&5^-tnhzlergd@9mx6@vc#bkqsk4ki@s76'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "spacex.teewuane.com",
+]
 
 
 # Application definition
