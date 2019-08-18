@@ -16,7 +16,7 @@ class Launchpad(object):
     # This class could easily be replaced by a django model using the django rest framework.
     def __init__(self, **kwargs):
         """Init the class."""
-        self.pad_id = kwargs.get('padid', None)
+        # self.pad_id = kwargs.get('padid', None)
         self.id = kwargs.get('id', None)
         self.full_name = kwargs.get('full_name', None)
         self.status = kwargs.get('status', None)
