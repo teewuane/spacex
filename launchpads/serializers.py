@@ -31,10 +31,11 @@ STATUSES = [
 class LaunchpadSerializer(serializers.Serializer):
     """Data Serializer."""
 
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(max_length=256)
-    owner = serializers.CharField(max_length=256)
-    status = serializers.ChoiceField(choices=STATUSES, default='Open')
+    # See launchpads.py for available fields.
+    id = serializers.CharField(read_only=True, max_length=256)
+    # pad_id = serializers.IntegerField()
+    full_name = serializers.CharField(max_length=256)
+    status = serializers.CharField(max_length=256)
 
     def create(self, validated_data):
         """Create method."""

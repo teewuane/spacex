@@ -7,19 +7,39 @@ Then I'll hook up to the spacex api.
 
 Then I'll cache the requests and stick them in redis so I don't hammer the SpaceX API.
 """
+import requests
 
 
 class Launchpad(object):
     """Represent data that is not in a model."""
 
+    # This class could easily be replaced by a django model using the django rest framework.
     def __init__(self, **kwargs):
         """Init the class."""
-        for field in ['id', 'name', 'owner', 'status']:
-            setattr(self, field, kwargs.get(field, None))
+        self.pad_id = kwargs.get('padid', None)
+        self.id = kwargs.get('id', None)
+        self.full_name = kwargs.get('full_name', None)
+        self.status = kwargs.get('status', None)
+
+        # for field in ['id', 'full_name', 'status']:
+        #     setattr(self, field, kwargs.get(field, None))
 
 
-launchpads = {
-    1: Launchpad(id=1, name='Hello', owner='teewuane', status='Open'),
-    2: Launchpad(id=2, name='Model less', owner='someone', status='Closed'),
-    3: Launchpad(id=3, name='Sleep', owner='teewuane', status='Closed'),
-}
+def fetch_launchpads():
+    """Request launchpads from spacex api."""
+    r = requests.get("https://api.spacexdata.com/v2/launchpads")
+
+    launchpads = {}
+
+    for idx, item in enumerate(r.json()):
+        launchpads[idx] = item
+
+    return launchpads
+
+    # return {
+    #     1: Launchpad(id=1, full_name='Hello', status='Open'),
+    #     2: Launchpad(id=2, full_name='Model less', status='Closed'),
+    #     3: Launchpad(id=3, full_name='Sleep', status='Closed'),
+    # }
+
+launchpads = fetch_launchpads()
