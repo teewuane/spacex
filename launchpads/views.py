@@ -5,7 +5,6 @@ from launchpads.serializers import (
     UserSerializer,
     GroupSerializer,
     LaunchpadSerializer)
-from rest_framework import serializers
 from launchpads.launchpads import launchpads
 from rest_framework.response import Response
 
