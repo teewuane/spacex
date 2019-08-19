@@ -26,7 +26,8 @@ SECRET_KEY = '7gpb%z&hh(nudk4@&5^-tnhzlergd@9mx6@vc#bkqsk4ki@s76'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "spacex.teewuane.com",
+    '127.0.0.1',
+    'spacex.teewuane.com',
 ]
 
 
@@ -40,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'spacex.urls'
 

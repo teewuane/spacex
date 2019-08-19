@@ -1,0 +1,22 @@
+.launchpad {
+	display: flex;
+	margin-bottom: 15px;
+	/*justify-content: center;*/
+	align-items: center;
+}
+
+.launchpad.active {
+	background-color: green;
+}
+
+.launchpad.under.construction {
+	background-color: yellow;
+}
+
+.launchpad.retired {
+	background-color: red;
+}
+
+.launchpad .status {
+	margin-left: 50px;
+}
