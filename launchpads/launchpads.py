@@ -21,8 +21,17 @@ class Launchpad(object):
         self.full_name = kwargs.get('full_name', None)
         self.status = kwargs.get('status', None)
 
-        # for field in ['id', 'full_name', 'status']:
-        #     setattr(self, field, kwargs.get(field, None))
+    def say_status(self):
+        """Used for testing."""
+        return "My status is '%s'." % (self.status)
+
+    def say_name(self):
+        """Used for testing."""
+        return "My name is '%s'." % (self.full_name)
+
+    def say_id(self):
+        """Used for testing."""
+        return "My id is '%s'." % (self.id)
 
 
 def fetch_launchpads():
