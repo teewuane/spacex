@@ -1,0 +1,35 @@
+server {
+    server_name spacex.teewuane.com;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static {
+        alias /home/web/spacex_env/spacex/collected_static/;
+    }
+
+    location / {
+        root /home/web/spacex_env/spacex/frontend/;
+    }
+
+    location /api {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/spacex.teewuane.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/spacex.teewuane.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = spacex.teewuane.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name spacex.teewuane.com;
+    return 404; # managed by Certbot
+}
